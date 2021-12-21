@@ -1,8 +1,8 @@
-package pageObjects;
+package com.epam.tc.hw.mobile.pageObjects;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
-import setup.IPageObject;
+import com.epam.tc.hw.mobile.setup.IPageObject;
 
 import java.lang.reflect.Field;
 
@@ -10,7 +10,7 @@ public class PageObject implements IPageObject {
 
     Object somePageObject; // it should be set of web page or EPAM Test App WebElements
 
-    public PageObject(String appType, AppiumDriver appiumDriver) throws Exception {
+    public PageObject(String appType, AppiumDriver<?> appiumDriver) throws Exception {
 
         System.out.println("Current app type: "+appType);
         switch(appType){

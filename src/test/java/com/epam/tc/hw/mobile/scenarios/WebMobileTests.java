@@ -1,0 +1,43 @@
+package com.epam.tc.hw.mobile.scenarios;
+
+import com.epam.tc.hw.mobile.pageObjects.WebPageObject;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import com.epam.tc.hw.mobile.setup.BaseTest;
+
+import java.util.List;
+
+public class WebMobileTests extends BaseTest {
+
+    @DataProvider(name = "googleEpamWebTest")
+    public Object[][] googleEpamWebTest() {
+        return new Object[][] {
+                {"http://google.com", "EPAM", "https://www.epam.com/"}};
+    }
+
+    @Test(groups = {"web"}, dataProvider = "googleEpamWebTest",
+            description = "Web search in chrome on google.com using keyword Epam ")
+    public void simpleWebTest(String searchUrl, String keyword , String expected) {
+        getDriver().get(searchUrl);
+
+        // Make sure that page has been loaded completely
+        new WebDriverWait(getDriver(), 10).until(
+                wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
+        );
+
+        WebPageObject webPageObject = new WebPageObject(getDriver());
+
+        webPageObject.searchOnGoogle(keyword);
+
+        List<String> actualLinks = webPageObject.getSearchLinks();
+        Assert.assertTrue(actualLinks.contains(expected));
+
+        List<String> actualNames = webPageObject.getSearchNames();
+        Assert.assertTrue(actualNames.stream().allMatch(o -> o.contains(keyword)));
+
+    }
+
+}

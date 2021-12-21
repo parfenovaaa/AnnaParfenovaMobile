@@ -1,9 +1,9 @@
-package setup;
+package com.epam.tc.hw.mobile.setup;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
-import pageObjects.PageObject;
+import com.epam.tc.hw.mobile.pageObjects.PageObject;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -12,11 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest implements IDriver {
 
-    private static AppiumDriver appiumDriver; // singleton
+    private static AppiumDriver<?> appiumDriver; // singleton
     IPageObject po;
 
     @Override
-    public AppiumDriver getDriver() { return appiumDriver; }
+    public AppiumDriver<?> getDriver() { return appiumDriver; }
 
     public IPageObject getPo() {
         return po;
@@ -32,7 +32,7 @@ public class BaseTest implements IDriver {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void tearDown() throws Exception {
+    public void tearDown() {
         System.out.println("After");
         appiumDriver.closeApp();
     }
@@ -49,7 +49,7 @@ public class BaseTest implements IDriver {
         capabilities.setCapability("chromedriverDisableBuildCheck","true");
 
         try {
-            appiumDriver = new AppiumDriver(new URL(System.getProperty("ts.appium")), capabilities);
+            appiumDriver = new AppiumDriver<>(new URL(System.getProperty("ts.appium")), capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class BaseTest implements IDriver {
 
     }
 
-    private void setPageObject(String appType, AppiumDriver appiumDriver) throws Exception {
+    private void setPageObject(String appType, AppiumDriver<?> appiumDriver) throws Exception {
         po = new PageObject(appType, appiumDriver);
     }
 
