@@ -41,7 +41,7 @@ public class WebMobileTests extends BaseTest {
 
         List<String> actualNames = webPageObject.getSearchNames();
         for (String element: actualNames) {
-            softAssert.assertTrue(element.contains(searchUrl));
+            softAssert.assertTrue(element.contains(keyword));
         }
 
         softAssert.assertAll("failure - On search page first " + actualNames.size()
