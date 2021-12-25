@@ -14,7 +14,7 @@ public class WebPageObject  {
     @FindBy(xpath = ".//input[@name='q']")
     public WebElement googleInput;
 
-    @FindBy(xpath = "//*[@id=\"rso\"]/div/div/div/div/div/a[@class='cz3goc BmP5tf']")
+    @FindBy(xpath = ".//a[@class='cz3goc BmP5tf']")
     public List<WebElement> googleSearch;
 
 

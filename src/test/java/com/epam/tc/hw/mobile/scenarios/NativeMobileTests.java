@@ -22,7 +22,8 @@ public class NativeMobileTests extends BaseTest {
         nativePageObject.registerUser(email, name, password);
         nativePageObject.loginUser(email, name);
 
-        Assert.assertEquals(endPoint, nativePageObject.pageName.getText());
+        Assert.assertEquals(endPoint, nativePageObject.pageName.getText(),
+                "failure - Failed to login in app");
 
     }
 

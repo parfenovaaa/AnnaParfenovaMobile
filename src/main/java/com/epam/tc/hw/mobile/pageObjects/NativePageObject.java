@@ -35,8 +35,7 @@ public class NativePageObject  {
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/register_new_account_button")
     public WebElement registerAccBtn;
 
-    @AndroidFindBy(xpath = "\t\n" +
-            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.view.ViewGroup/android.widget.TextView")
+    @AndroidFindBy(xpath = ".//android.view.ViewGroup/android.widget.TextView")
     public WebElement pageName;
 
     public NativePageObject(AppiumDriver<?> appiumDriver) {

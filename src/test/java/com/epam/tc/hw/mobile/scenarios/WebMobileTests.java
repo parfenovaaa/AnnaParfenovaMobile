@@ -7,10 +7,13 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.epam.tc.hw.mobile.setup.BaseTest;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class WebMobileTests extends BaseTest {
+
+    SoftAssert softAssert= new SoftAssert();
 
     @DataProvider(name = "googleEpamWebTest")
     public Object[][] googleEpamWebTest() {
@@ -33,10 +36,16 @@ public class WebMobileTests extends BaseTest {
         webPageObject.searchOnGoogle(keyword);
 
         List<String> actualLinks = webPageObject.getSearchLinks();
-        Assert.assertTrue(actualLinks.contains(expected));
+        Assert.assertTrue(actualLinks.contains(expected),
+                "failure - There is no link on " + expected + " on  the page.");
 
         List<String> actualNames = webPageObject.getSearchNames();
-        Assert.assertTrue(actualNames.stream().allMatch(o -> o.contains(keyword)));
+        for (String element: actualNames) {
+            softAssert.assertTrue(element.contains(searchUrl));
+        }
+
+        softAssert.assertAll("failure - On search page first " + actualNames.size()
+                            + " links aren`t relevant to " + keyword);
 
     }
 
