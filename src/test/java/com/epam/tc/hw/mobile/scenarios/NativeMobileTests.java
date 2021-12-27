@@ -17,7 +17,6 @@ public class NativeMobileTests extends BaseTest {
     @Test(groups = {"native"}, dataProvider = "nativeEpamTest",
             description = "This simple test register in EpamTestApp and sign in as registered user")
     public void registerNativeTest(String email, String name, String password, String endPoint) {
-
         NativePageObject nativePageObject = new NativePageObject(getDriver());
         nativePageObject.registerUser(email, name, password);
         nativePageObject.loginUser(email, name);

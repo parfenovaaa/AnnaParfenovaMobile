@@ -43,7 +43,6 @@ public class NativePageObject  {
     }
 
     public void registerUser(String email, String name, String password) {
-
         registerBtn.click();
         registerEmail.sendKeys(email);
         registerUsername.sendKeys(name);
@@ -53,7 +52,6 @@ public class NativePageObject  {
     }
 
     public void loginUser(String email, String password) {
-
         loginEmail.sendKeys(email);
         loginPwd.sendKeys(password);
         signInBtn.click();
