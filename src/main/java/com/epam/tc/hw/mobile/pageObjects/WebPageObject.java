@@ -1,10 +1,12 @@
 package com.epam.tc.hw.mobile.pageObjects;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,5 +44,11 @@ public class WebPageObject  {
             links.add(search.getText());
         }
         return links;
+    }
+
+    public void waitForPageToLoad(AppiumDriver<?> driver) {
+        new WebDriverWait(driver, 10).until(
+                wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
+        );
     }
 }

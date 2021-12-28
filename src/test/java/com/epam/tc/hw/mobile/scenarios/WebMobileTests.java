@@ -2,8 +2,6 @@ package com.epam.tc.hw.mobile.scenarios;
 
 import com.epam.tc.hw.mobile.pageObjects.WebPageObject;
 import com.epam.tc.hw.mobile.setup.BaseTest;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -23,12 +21,9 @@ public class WebMobileTests extends BaseTest {
     public void simpleWebTest(String searchUrl, String keyword , String expected) {
         getDriver().get(searchUrl);
 
-        // Make sure that page has been loaded completely
-        new WebDriverWait(getDriver(), 10).until(
-                wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
-        );
-
         WebPageObject webPageObject = new WebPageObject(getDriver());
+
+        webPageObject.waitForPageToLoad(getDriver());
         webPageObject.searchOnGoogle(keyword);
 
         SoftAssert softAssert= new SoftAssert();
