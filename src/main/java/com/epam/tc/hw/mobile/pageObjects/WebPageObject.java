@@ -14,15 +14,13 @@ import java.util.List;
 public class WebPageObject  {
 
     @FindBy(xpath = ".//input[@name='q']")
-    public WebElement googleInput;
+    WebElement googleInput;
 
     @FindBy(xpath = ".//a[@class='cz3goc BmP5tf']")
-    public List<WebElement> googleSearch;
-
+    List<WebElement> googleSearch;
 
     public WebPageObject(AppiumDriver<?> appiumDriver) {
         PageFactory.initElements(appiumDriver, this);
-
     }
 
     public void searchOnGoogle(String input) {
@@ -46,7 +44,8 @@ public class WebPageObject  {
         return links;
     }
 
-    public void waitForPageToLoad(AppiumDriver<?> driver) {
+    public void goOnPage(AppiumDriver<?> driver, String url) {
+        driver.get(url);
         new WebDriverWait(driver, 10).until(
                 wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
         );

@@ -19,11 +19,9 @@ public class WebMobileTests extends BaseTest {
     @Test(groups = {"web"}, dataProvider = "googleEpamWebTest",
             description = "Web search in chrome on google.com using keyword Epam ")
     public void simpleWebTest(String searchUrl, String keyword , String expected) {
-        getDriver().get(searchUrl);
-
         WebPageObject webPageObject = new WebPageObject(getDriver());
 
-        webPageObject.waitForPageToLoad(getDriver());
+        webPageObject.goOnPage(getDriver(), searchUrl);
         webPageObject.searchOnGoogle(keyword);
 
         SoftAssert softAssert= new SoftAssert();

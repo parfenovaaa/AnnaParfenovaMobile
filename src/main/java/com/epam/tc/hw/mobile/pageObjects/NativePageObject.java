@@ -9,34 +9,34 @@ import org.openqa.selenium.support.PageFactory;
 public class NativePageObject  {
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/email_sign_in_button")
-    public WebElement signInBtn;
+    WebElement signInBtn;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/register_button")
-    public WebElement registerBtn;
+    WebElement registerBtn;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/login_email")
-    public WebElement loginEmail;
+    WebElement loginEmail;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/login_pwd")
-    public WebElement loginPwd;
+    WebElement loginPwd;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/registration_email")
-    public WebElement registerEmail;
+    WebElement registerEmail;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/registration_username")
-    public WebElement registerUsername;
+    WebElement registerUsername;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/registration_password")
-    public WebElement registerPwd;
+    WebElement registerPwd;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/registration_confirm_password")
-    public WebElement registerConfirmPwd;
+    WebElement registerConfirmPwd;
 
     @AndroidFindBy(id = "platkovsky.alexey.epamtestapp:id/register_new_account_button")
-    public WebElement registerAccBtn;
+    WebElement registerAccBtn;
 
     @AndroidFindBy(xpath = ".//android.view.ViewGroup/android.widget.TextView")
-    public WebElement pageName;
+    WebElement pageName;
 
     public NativePageObject(AppiumDriver<?> appiumDriver) {
         PageFactory.initElements( new AppiumFieldDecorator(appiumDriver), this);
@@ -55,6 +55,10 @@ public class NativePageObject  {
         loginEmail.sendKeys(email);
         loginPwd.sendKeys(password);
         signInBtn.click();
+    }
+
+    public String getPageName() {
+        return pageName.getText();
     }
 
 }
