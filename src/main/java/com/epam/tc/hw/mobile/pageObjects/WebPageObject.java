@@ -54,8 +54,4 @@ public class WebPageObject  {
         }
         return links;
     }
-
-    public void goOnPage(AppiumDriver<?> driver, String url) {
-        driver.get(url);
-    }
 }
