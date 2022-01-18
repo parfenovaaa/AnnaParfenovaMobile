@@ -1,12 +1,11 @@
 package com.epam.tc.hw.mobile.scenarios;
 
-import com.epam.tc.hw.mobile.pageObjects.NativePageObject;
+import com.epam.tc.hw.mobile.pageObjects.nativeApp.NativePageObject;
+import com.epam.tc.hw.mobile.pageObjects.nativeApp.nativeLoginPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.epam.tc.hw.mobile.setup.BaseTest;
-
-import java.util.Objects;
 
 public class NativeMobileTests extends BaseTest {
 
@@ -21,22 +20,14 @@ public class NativeMobileTests extends BaseTest {
     public void registerNativeTest(String email, String name, String password, String endPoint) {
         String platform = getDriver().getPlatformName();
         NativePageObject nativePageObject = new NativePageObject(getDriver());
+        nativeLoginPage nativeLoginPage = new nativeLoginPage(getDriver());
 
-        if (Objects.equals(platform, "Android")) {
-            nativePageObject.registerAndroidUser(email, name, password);
-            nativePageObject.loginAndroidUser(email, name);
-            String actualPageName = nativePageObject.getAndroidPageName();
+        nativePageObject.registerUser(platform, email, name, password);
+        nativeLoginPage.loginUser(platform, email, name);
+        String actualPageName = nativePageObject.getPageName(platform);
 
-            Assert.assertTrue(actualPageName.contains(endPoint),
-                    "failure - Failed to login in app");
-        } else if (Objects.equals(platform, "iOS")) {
-            nativePageObject.registerIosUser(email, name, password);
-            nativePageObject.loginIosUser(email, password);
-            String actualPageName = nativePageObject.getIosPageName();
-
-            Assert.assertTrue(actualPageName.contains(endPoint),
-                    "failure - Failed to login in app");
-        }
+        Assert.assertTrue(actualPageName.contains(endPoint),
+                "failure - Failed to login in app");
     }
 
 }

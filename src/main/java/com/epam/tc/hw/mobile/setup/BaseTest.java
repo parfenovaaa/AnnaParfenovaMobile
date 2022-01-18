@@ -23,7 +23,7 @@ public class BaseTest implements IDriver {
     private static final String API_KEY = "BaBREd+ISG0nXOc954tYb1v10lFg55+4NCXMV5WI5NRGE0YK6ZquhjB1wulyRHVn1gEKCp52vDKR0IxLu9kYhsW9tcQSUxQR41U/+bc94ZbMC+BX/k8Xt1GRCp50MVTUpvBQAQ6EcOWEn5yCKPmG7yxfeJIilJ1nlIgbgiCXsO0n0D6QnziIGKKKxJDNYzlAaSf4QU8w8eT0TZSQL+TZnUho3pQ9+WEW8ANzsrmNiTdwwb1x9ZXZ8j7v+KNHPejoV59biEqgGia5KsQ9nyVrhL5PQcbiwf15hTlx2s6s5vDTv/M7e4f+PxQkj1AsGH53l2E6W0IOtv/kGbTVzC0O6eiHEYF8kT661WmScn9WVKVHZyLNzkyj+PcoYdTm8QI9gShfuyyFycCAf3mym/9I5dgG9m6Fl0gIvVAL0GWdf9CSLUN3pRxSslTI0buGlLZiQ2Vwp8JeePPdeLnJcgYm+BqrsDt4pqoE/d29S6J2rsFyIIAN1szrCgJtY26Je+JKj92JcG6CCxTgJa9fnal3OCneMBwCW3aqJofXB8C5WiCLRATU8FTOeWPShXYZKgq7Ke9cX/CpvcLBYldUGSPX1icNpeqE51Od16yxj+sNfpDoREZfa0msTeHafZjHnnWgtvYVSjWOz/4dR2t4j3zj0WS9W2nqKCpqS4h+mUp7/LZn/bwi3tH2D9pTRknjCxchzSAU2u9m/I5UTDtFaCuN+jzOzljRCoZWW9iFitebuybsQSkS3tSvzh4tx/ylYPh6/X37ZlPnYEo2jxce4NdSXaqaqGolBdwNEEjkWiOsYR2VD0DpiW8rkNVJx8Ehf2OAWNEb5mhdOnZECoRDWvE/yK2YoM3p/ZhijI48SkcwGx8nWpe0Axp67An8hgg6wNJH6VHmgQKlBD1zcFhUh/+gYPc";
     private static final String APPIUM_HUB = "mobilecloud.epam.com";
 
-    private static AppiumDriver<?> appiumDriver; // singleton
+    private static AppiumDriver<?> appiumDriver;
 
     @Override
     public AppiumDriver<?> getDriver() { return appiumDriver; }
