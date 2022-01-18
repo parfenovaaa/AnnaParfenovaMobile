@@ -23,6 +23,11 @@ public class WebPageObject  {
     @FindBy(xpath = "(.//*[@class= 'sbic sb43'])[1]")
     private WebElement iosFirstLink;
 
+
+    static final String Android = "Android";
+
+    static final String iOS = "iOS";
+
     public WebPageObject(AppiumDriver<?> appiumDriver) {
         PageFactory.initElements(appiumDriver, this);
         new WebDriverWait(appiumDriver, 10).until(
@@ -32,9 +37,9 @@ public class WebPageObject  {
 
     public void searchOnGoogle(String input, String platform) {
         googleInput.sendKeys(input);
-         if (Objects.equals(platform, "Android")) {
+         if (Objects.equals(platform, Android)) {
              googleInput.sendKeys(Keys.ENTER);
-         } else if (Objects.equals(platform, "iOS")) {
+         } else if (Objects.equals(platform, iOS)) {
              iosFirstLink.click();
          }
     }
