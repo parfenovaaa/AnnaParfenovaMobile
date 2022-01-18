@@ -20,22 +20,23 @@ public class WebMobileTests extends BaseTest {
             description = "Web search in chrome on google.com using keyword Epam ")
     public void simpleWebTest(String searchUrl, String keyword , String expected) {
         WebPageObject webPageObject = new WebPageObject(getDriver());
+        getDriver().get(searchUrl);
+        String platform = getDriver().getPlatformName();
 
-        webPageObject.goOnPage(getDriver(), searchUrl);
-        webPageObject.searchOnGoogle(keyword);
+        webPageObject.searchOnGoogle(keyword, platform);
 
         SoftAssert softAssert= new SoftAssert();
         List<String> actualLinks = webPageObject.getSearchLinks();
         softAssert.assertTrue(actualLinks.contains(expected),
-                "failure - There is no link on " + expected + " on  the page.");
+                String.format("failure - There is no link on  %s on  the page.", expected));
 
         List<String> actualNames = webPageObject.getSearchNames();
         for (String element: actualNames) {
             softAssert.assertTrue(element.contains(keyword));
         }
 
-        softAssert.assertAll("failure - On search page first " + actualNames.size()
-                            + " links aren`t relevant to " + keyword);
+        softAssert.assertAll(String.format("failure - On search page first %d links aren`t relevant to %s",
+                actualNames.size(), keyword));
     }
 
 }

@@ -10,22 +10,38 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class WebPageObject  {
 
     @FindBy(xpath = ".//input[@name='q']")
-    WebElement googleInput;
+    private WebElement googleInput;
 
     @FindBy(xpath = ".//a[@class='cz3goc BmP5tf']")
-    List<WebElement> googleSearch;
+    private List<WebElement> googleSearch;
+
+    @FindBy(xpath = "(.//*[@class= 'sbic sb43'])[1]")
+    private WebElement iosFirstLink;
+
+
+    static final String Android = "Android";
+
+    static final String iOS = "iOS";
 
     public WebPageObject(AppiumDriver<?> appiumDriver) {
         PageFactory.initElements(appiumDriver, this);
+        new WebDriverWait(appiumDriver, 10).until(
+                wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
+        );
     }
 
-    public void searchOnGoogle(String input) {
+    public void searchOnGoogle(String input, String platform) {
         googleInput.sendKeys(input);
-        googleInput.sendKeys(Keys.ENTER);
+         if (Objects.equals(platform, Android)) {
+             googleInput.sendKeys(Keys.ENTER);
+         } else if (Objects.equals(platform, iOS)) {
+             iosFirstLink.click();
+         }
     }
 
     public List <String> getSearchLinks() {
@@ -42,12 +58,5 @@ public class WebPageObject  {
             links.add(search.getText());
         }
         return links;
-    }
-
-    public void goOnPage(AppiumDriver<?> driver, String url) {
-        driver.get(url);
-        new WebDriverWait(driver, 10).until(
-                wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
-        );
     }
 }
